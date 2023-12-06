@@ -1,0 +1,17 @@
+
+
+
+gen lines output:
+  python3 gen_samples.py -l '{{lines}}' -o '{{output}}'
+
+test awkfile file:
+  ./test_script.sh '{{awkfile}}' '{{file}}'
+
+run awkfile file:
+  awk -f '{{awkfile}}' <(awk '{print $1}' '{{file}}')
+
+rundebug awkfile file:
+  awk -v debug=1 -f '{{awkfile}}' <(awk '{print $1}' '{{file}}')
+
+diff awkfile file:
+  diff -B <(just rundebug '{{awkfile}}' '{{file}}') '{{file}}')
