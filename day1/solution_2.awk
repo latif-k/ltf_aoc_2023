@@ -32,19 +32,22 @@ function parse_text(accumlator, ch){
   while(i <= length($0))
   {
     accumlator = parse_text(accumlator, $i);
-    if(accumlator == "") {
-      anchor = anchor + 1;
+    #parsing substring fails
+    if(accumlator == ""){
+      anchor++;
       i = anchor;
       continue;
     };
+    #parsing succeeds
     if(typeof(accumlator) == "number" && first == "") first = accumlator
     if(typeof(accumlator) == "number")  {
-      anchor = anchor + 1
+      anchor++;
       i = anchor
       last = accumlator
       accumlator = ""
       continue;
     }
+    #continue parsing
     i++;
   } 
   total += strtonum(first last) # string concat
